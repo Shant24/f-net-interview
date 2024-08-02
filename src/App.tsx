@@ -1,32 +1,34 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.scss";
+import type { IOption } from "@/types";
+import CustomSelect from "@/components/CustomSelect";
+import names from "./names.json";
 
-function App() {
-  const [count, setCount] = useState(0);
+const App = () => {
+  const [singleValue, setSingleValue] = useState<IOption | null>(null);
+  const [multipleValues, setMultipleValues] = useState<IOption[] | null>([]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
+      <div style={{ position: "relative", padding: 100, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
+        <CustomSelect
+          value={singleValue}
+          options={names}
+          label="Region"
+          // errorMessage="Region is required"
+          handleValueChange={setSingleValue}
+        />
 
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <CustomSelect
+          isMulti
+          value={multipleValues}
+          options={names}
+          label="Subject"
+          errorMessage="Subject is required"
+          handleValueChange={setMultipleValues}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,17 @@
+.dropdown {
+  position: relative;
+}
+
+.menu {
+  width: 100%;
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 2;
+}
+
+.blanket {
+  position: fixed;
+  inset: 0;
+  cursor: pointer;
+  z-index: 1;
+}

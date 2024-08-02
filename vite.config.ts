@@ -3,9 +3,7 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const cwd = process.cwd();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const env = { ...loadEnv(mode, cwd, "VITE_") };
 
   // reusable config for both server and preview

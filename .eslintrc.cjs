@@ -1,3 +1,5 @@
+const { allowedNodeEnvironmentFlags } = require("process");
+
 module.exports = {
   extends: [
     "eslint:recommended",
@@ -28,20 +30,9 @@ module.exports = {
     },
   },
   rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      {
-        allowConstantExport: true,
-      },
-    ],
-    "@typescript-eslint/consistent-type-imports": [
-      2,
-      {
-        fixStyle: "separate-type-imports",
-      },
-    ],
+    "@typescript-eslint/consistent-type-imports": ["error", { fixStyle: "separate-type-imports" }],
     "@typescript-eslint/no-restricted-imports": [
-      2,
+      "error",
       {
         paths: [
           {
@@ -52,13 +43,10 @@ module.exports = {
         ],
       },
     ],
-
     "@stylistic/ts/indent": ["error", 2],
     "no-console": ["warn", { allow: ["error"] }],
-    // "react/display-name": "off",
-    // "no-undef": "off",
     "react-hooks/exhaustive-deps": "warn",
-    // "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-unused-vars": [
@@ -73,5 +61,7 @@ module.exports = {
         ignoreRestSiblings: true,
       },
     ],
+    "@typescript-eslint/no-empty-interface": "warn",
+    "@typescript-eslint/no-unsafe-call": "off",
   },
 };
