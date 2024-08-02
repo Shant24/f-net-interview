@@ -3,7 +3,7 @@ import { useLocalization } from "@/contexts/Localization";
 import PageLoading from "@/components/PageLoading";
 import Header from "@/components/Header";
 
-const BaseLayout = () => {
+const AuthLayout = () => {
   const { localizationState } = useLocalization();
 
   if (localizationState === "pending") {
@@ -18,4 +18,4 @@ const BaseLayout = () => {
   );
 };
 
-export default BaseLayout;
+export default AuthLayout;
