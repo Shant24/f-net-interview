@@ -24,6 +24,25 @@ input {
 #root {
 }
 
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: var(--color-scrollbar);
+
+  &:hover {
+    background: var(--color-primary);
+  }
+}
+
 input {
   &::placeholder {
     color: inherit;
