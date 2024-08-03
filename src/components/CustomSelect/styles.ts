@@ -1,6 +1,6 @@
-import type { StylesConfig } from "react-select";
+import type { GroupBase, StylesConfig } from "react-select";
 
-export const selectStyles: StylesConfig<unknown, false> = {
+export const customSelectStyles: StylesConfig<unknown, false, GroupBase<unknown>> = {
   container: (provided) => ({
     ...provided,
     boxShadow: "0px 2px 24px 0px val(--color-black-8)",
@@ -73,20 +73,21 @@ export const selectStyles: StylesConfig<unknown, false> = {
     };
   },
 
-  singleValue: (provided) => ({ ...provided }),
-  multiValue: (provided) => ({ ...provided }),
+  menuList: (provided) => ({ ...provided, maxHeight: 188 }),
 
-  clearIndicator: (provided) => ({ ...provided }),
-  dropdownIndicator: (provided) => ({ ...provided }),
-  indicatorSeparator: (provided) => ({ ...provided }),
-  multiValueRemove: (provided) => ({ ...provided }),
-  multiValueLabel: (provided) => ({ ...provided }),
-  menuList: (provided) => ({ ...provided }),
-  group: (provided) => ({ ...provided }),
-  groupHeading: (provided) => ({ ...provided }),
-  indicatorsContainer: (provided) => ({ ...provided }),
-  noOptionsMessage: (provided) => ({ ...provided }),
-  loadingMessage: (provided) => ({ ...provided }),
-  loadingIndicator: (provided) => ({ ...provided }),
-  menuPortal: (provided) => ({ ...provided }),
+  // singleValue: (provided) => ({ ...provided }),
+  // multiValue: (provided) => ({ ...provided }),
+
+  // clearIndicator: (provided) => ({ ...provided }),
+  // dropdownIndicator: (provided) => ({ ...provided }),
+  // indicatorSeparator: (provided) => ({ ...provided }),
+  // multiValueRemove: (provided) => ({ ...provided }),
+  // multiValueLabel: (provided) => ({ ...provided }),
+  // group: (provided) => ({ ...provided }),
+  // groupHeading: (provided) => ({ ...provided }),
+  // indicatorsContainer: (provided) => ({ ...provided }),
+  // noOptionsMessage: (provided) => ({ ...provided }),
+  // loadingMessage: (provided) => ({ ...provided }),
+  // loadingIndicator: (provided) => ({ ...provided }),
+  // menuPortal: (provided) => ({ ...provided }),
 };

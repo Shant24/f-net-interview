@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  position: relative;
+
+  .countryButton {
+    padding: 0 16px;
+    min-width: 64px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+    text-wrap: nowrap;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 10px 0 0 10px;
+    border-right: none;
+  }
+
+  .selectContainer {
+    position: unset;
+  }
+
+  .phoneInput {
+    padding: 12px 13px;
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-dark);
+    background-color: transparent;
+    border: 1px solid var(--color-dark-80);
+    border-radius: 0 10px 10px 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &.error {
+      border-color: var(--color-red);
+    }
+  }
+}

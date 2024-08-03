@@ -2,15 +2,16 @@ import clsx from "clsx";
 import ChevronDownIcon from "@/components/icons/ChevronDownIcon";
 import styles from "./styles.module.scss";
 
-interface ButtonProps extends Omit<React.HTMLProps<HTMLButtonElement>, "children" | "type"> {
+export interface DropdownButtonProps extends Omit<React.HTMLProps<HTMLButtonElement>, "children" | "type"> {
   isOpen?: boolean;
   label?: string;
   valueLabel?: string;
   errorMessage?: string;
+  hideIcon?: boolean;
 }
 
-const DropdownButton = (props: ButtonProps) => {
-  const { className, isOpen, label = "Select", valueLabel, errorMessage, ...restProps } = props;
+const DropdownButton = (props: DropdownButtonProps) => {
+  const { className, isOpen, label = "Select", valueLabel, errorMessage, hideIcon, ...restProps } = props;
 
   return (
     <button
@@ -22,11 +23,9 @@ const DropdownButton = (props: ButtonProps) => {
         {!valueLabel && label && <span>{label}</span>}
 
         {valueLabel && <span>{valueLabel}</span>}
-
-        {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
       </div>
 
-      <ChevronDownIcon className={clsx(styles.buttonIcon, isOpen && styles.rotate)} />
+      {!hideIcon && <ChevronDownIcon className={clsx(styles.buttonIcon, isOpen && styles.rotate)} />}
     </button>
   );
 };

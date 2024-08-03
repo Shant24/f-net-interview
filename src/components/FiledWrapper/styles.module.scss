@@ -1,0 +1,15 @@
+.wrapper {
+  position: relative;
+
+  .errorMessage {
+    padding: 0 1px;
+    position: absolute;
+    top: 0;
+    left: 8px;
+    color: var(--color-red);
+    font-size: 14px;
+    line-height: 1;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+}

@@ -1,4 +1,6 @@
-export interface IOption<V = string> extends Record<string, unknown> {
+export interface IOption<V = string> {
   label: string;
   value: V;
+
+  [key: string]: unknown;
 }

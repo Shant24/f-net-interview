@@ -39,7 +39,7 @@ const Routes = () => {
       children: [
         {
           index: true,
-          element: <Navigate to={PagesEnum.LOGIN} />,
+          element: <Navigate to={PagesEnum.LOGIN} replace />,
         },
         {
           path: "/auth/login",

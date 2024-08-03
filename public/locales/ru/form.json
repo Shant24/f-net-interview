@@ -4,7 +4,16 @@
     "lastName": "Фамилия",
     "email": "Адрес электронной почты",
     "password": "Пароль",
-    "confirmPassword": "Подтвердите пароль"
+    "confirmPassword": "Подтвердите пароль",
+    "selectCode": "Выберите код",
+    "phone": "Номер телефона",
+    "country": "Страна",
+    "region": "Регион",
+    "regionState": "Регион/штат",
+    "cityVillage": "Город, деревня",
+    "school": "Школа",
+    "subject": "Предмет",
+    "grade": "Класс"
   },
   "errors": {
     "name": {
@@ -29,6 +38,31 @@
     "confirmPassword": {
       "required": "Требуется подтверждение пароля",
       "match": "Пароли не совпадают"
+    },
+    "phone": {
+      "required": "Требуется номер телефона",
+      "invalid": "Неверный номер телефона"
+    },
+    "country": {
+      "required": "Требуется страна"
+    },
+    "region": {
+      "required": "Требуется регион"
+    },
+    "regionState": {
+      "required": "Требуется регион/штат"
+    },
+    "cityVillage": {
+      "required": "Требуется город, деревня"
+    },
+    "school": {
+      "required": "Требуется школа"
+    },
+    "subject": {
+      "required": "Требуется предмет"
+    },
+    "grade": {
+      "required": "Требуется класс"
     }
   }
 }

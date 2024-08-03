@@ -1,3 +1,3 @@
-import CustomBackend from './CustomBackend';
+import CustomBackend from "./CustomBackend";
 
 export default CustomBackend;

@@ -68,6 +68,8 @@ module.exports = {
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
     "react/prop-types": "off",
+    "react/display-name": "off",
   },
 };

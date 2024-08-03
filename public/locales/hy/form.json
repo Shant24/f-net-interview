@@ -4,7 +4,16 @@
     "lastName": "Ազգանուն",
     "email": "Էլ.փոստ",
     "password": "Գաղտնաբառ",
-    "confirmPassword": "Հաստատել գաղտնաբառը"
+    "confirmPassword": "Հաստատել գաղտնաբառը",
+    "selectCode": "Ընտրել կոդը",
+    "phone": "Հեռախոսահամար",
+    "country": "Երկիր",
+    "region": "Մարզ",
+    "regionState": "Մարզ/նահանգ",
+    "cityVillage": "Քաղաք, գյուղ",
+    "school": "Դպրոց",
+    "subject": "Առարկա",
+    "grade": "Դասարան"
   },
   "errors": {
     "name": {
@@ -29,6 +38,31 @@
     "confirmPassword": {
       "required": "Հաստատել գաղտնաբառը պարտադիր է",
       "match": "Գաղտնաբառերը չեն համընկնում"
+    },
+    "phone": {
+      "required": "Հեռախոսահամարը պարտադիր է",
+      "invalid": "Հեռախոսահամարը սխալ է"
+    },
+    "country": {
+      "required": "Երկիրը պարտադիր է"
+    },
+    "region": {
+      "required": "Մարզը պարտադիր է"
+    },
+    "regionState": {
+      "required": "Մարզ/նահանգը պարտադիր է"
+    },
+    "cityVillage": {
+      "required": "Քաղաք, գյուղը պարտադիր է"
+    },
+    "school": {
+      "required": "Դպրոցը պարտադիր է"
+    },
+    "subject": {
+      "required": "Առարկան պարտադիր է"
+    },
+    "grade": {
+      "required": "Դասարանը պարտադիր է"
     }
   }
 }

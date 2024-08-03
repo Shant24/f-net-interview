@@ -24,6 +24,12 @@ input {
 #root {
 }
 
+input {
+  &::placeholder {
+    color: inherit;
+  }
+}
+
 input[type="checkbox"] {
   appearance: none;
   width: 16px;

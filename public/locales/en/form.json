@@ -4,7 +4,16 @@
     "lastName": "Last Name",
     "email": "Email",
     "password": "Password",
-    "confirmPassword": "Confirm Password"
+    "confirmPassword": "Confirm Password",
+    "selectCode": "Select Code",
+    "phone": "Phone Number",
+    "country": "Country",
+    "region": "Region",
+    "regionState": "Region/State",
+    "cityVillage": "City, Village",
+    "school": "School",
+    "subject": "Subject",
+    "grade": "Grade"
   },
   "errors": {
     "name": {
@@ -29,6 +38,31 @@
     "confirmPassword": {
       "required": "Confirm password is required",
       "match": "Passwords don't match"
+    },
+    "phone": {
+      "required": "Phone number is required",
+      "invalid": "Phone number is not correct"
+    },
+    "country": {
+      "required": "Country is required"
+    },
+    "region": {
+      "required": "Region is required"
+    },
+    "regionState": {
+      "required": "Region/State is required"
+    },
+    "cityVillage": {
+      "required": "City, Village is required"
+    },
+    "school": {
+      "required": "School is required"
+    },
+    "subject": {
+      "required": "Subject is required"
+    },
+    "grade": {
+      "required": "Grade is required"
     }
   }
 }

@@ -1,10 +1,11 @@
 .dropdownButton {
   width: 100%;
   padding: 12px 16px;
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 16px;
+  line-height: 24px;
   color: var(--color-dark);
   background: transparent;
   border: 1px solid var(--color-dark-80);
@@ -14,18 +15,6 @@
 
   &.error {
     border-color: var(--color-red);
-  }
-
-  .errorMessage {
-    padding: 0 1px;
-    position: absolute;
-    top: 0;
-    left: 8px;
-    background: var(--color-light);
-    color: var(--color-red);
-    font-size: 14px;
-    line-height: 24px;
-    transform: translateY(-50%);
   }
 }
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type {
   GroupBase,
   MultiValue,
@@ -8,16 +8,18 @@ import type {
   StylesConfig,
 } from "react-select";
 import type { IOption } from "@/types";
+import type { DropdownButtonProps } from "@/components/DropdownButton";
 import Select from "react-select";
 import { genericMemo } from "@/helpers";
 import DropdownIndicatorIcon from "@/components/icons/DropdownIndicatorIcon";
+import DropdownButton from "@/components/DropdownButton";
+import FiledWrapper from "@/components/FiledWrapper";
 import Dropdown from "./components/Dropdown";
-import DropdownButton from "./components/DropdownButton";
 import DropdownInput from "./components/DropdownInput";
 import DropdownOption from "./components/DropdownOption";
-import { selectStyles } from "./styles";
+import { customSelectStyles } from "./styles";
 
-const components: Partial<SelectComponentsConfig<IOption, false, GroupBase<IOption>>> = {
+const defaultComponents: Partial<SelectComponentsConfig<IOption, false, GroupBase<IOption>>> = {
   DropdownIndicator: () => <DropdownIndicatorIcon />,
   Control: DropdownInput,
   Option: DropdownOption,
@@ -34,8 +36,11 @@ export interface CustomSelectProps<TOption extends IOption = IOption, IsMulti ex
   isMulti?: IsMulti;
   styles?: StylesConfig<TOption, IsMulti>;
   errorMessage?: string;
+  containerClassName?: string;
+  components?: Partial<SelectComponentsConfig<TOption, IsMulti, GroupBase<TOption>>>;
   value: IOptionValueType<TOption, IsMulti>;
   handleValueChange: (value: IOptionValueType<TOption, IsMulti>) => void;
+  renderDropdownButton?: (props: DropdownButtonProps) => JSX.Element;
 }
 
 const CustomSelect = <TOption extends IOption = IOption, IsMulti extends boolean = false>(
@@ -45,10 +50,13 @@ const CustomSelect = <TOption extends IOption = IOption, IsMulti extends boolean
     options,
     label,
     isMulti,
-    styles = selectStyles as StylesConfig<TOption, IsMulti>,
+    styles = customSelectStyles as StylesConfig<TOption, IsMulti>,
     errorMessage,
+    containerClassName,
+    components,
     value,
     handleValueChange,
+    renderDropdownButton,
   } = props;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -63,28 +71,39 @@ const CustomSelect = <TOption extends IOption = IOption, IsMulti extends boolean
     }
   };
 
+  const buttonProps = useMemo(
+    () => ({
+      isOpen,
+      label,
+      valueLabel: isMulti
+        ? (value as MultiValue<TOption>)?.map(({ label }) => label).join(", ")
+        : (value as SingleValue<TOption>)?.label,
+      errorMessage,
+      onClick: toggleOpen,
+    }),
+    [errorMessage, isMulti, isOpen, label, value],
+  );
+
   return (
     <Dropdown
+      className={containerClassName}
       isOpen={isOpen}
       onClose={handleClose}
       target={
-        <DropdownButton
-          isOpen={isOpen}
-          label={label}
-          valueLabel={
-            isMulti
-              ? (value as MultiValue<TOption>)?.map(({ label }) => label).join(", ")
-              : (value as SingleValue<TOption>)?.label
-          }
-          errorMessage={errorMessage}
-          onClick={toggleOpen}
-        />
+        renderDropdownButton?.(buttonProps) ?? (
+          <FiledWrapper errorMessage={errorMessage}>
+            <DropdownButton {...buttonProps} />
+          </FiledWrapper>
+        )
       }
     >
       <Select<TOption, IsMulti>
         autoFocus
         backspaceRemovesValue={false}
-        components={components as Partial<SelectComponentsConfig<TOption, IsMulti, GroupBase<TOption>>>}
+        components={{
+          ...(defaultComponents as Partial<SelectComponentsConfig<TOption, IsMulti, GroupBase<TOption>>>),
+          ...components,
+        }}
         controlShouldRenderValue={false}
         hideSelectedOptions={false}
         isClearable={false}
