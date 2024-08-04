@@ -1,9 +1,9 @@
 import { memo, useEffect, useMemo, useState } from "react";
 import type { Country } from "react-phone-number-input/input";
 import type { IOption } from "@/types";
-import clsx from "clsx";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 import PhoneInput from "react-phone-number-input/react-hook-form-input";
 import {
   getCountries,
@@ -11,8 +11,8 @@ import {
   isValidPhoneNumber,
   parsePhoneNumber,
 } from "react-phone-number-input/input";
-import FiledWrapper from "@/components/FiledWrapper";
-import CustomSelect from "@/components/CustomSelect";
+import FiledWrapper from "@/components/Form/FiledWrapper";
+import CustomSelect from "@/components/Form/CustomSelect";
 import DropdownButton from "@/components/DropdownButton";
 import en from "react-phone-number-input/locale/en";
 import hy from "react-phone-number-input/locale/hy";

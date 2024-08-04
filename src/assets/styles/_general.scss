@@ -22,6 +22,12 @@ input {
 }
 
 #root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 ::-webkit-scrollbar {
@@ -77,4 +83,10 @@ input[type="checkbox"] {
   &:not(:disabled) {
     background-color: var(--color-primary);
   }
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }

@@ -3,7 +3,7 @@ import type { GroupBase, StylesConfig } from "react-select";
 export const customSelectStyles: StylesConfig<unknown, false, GroupBase<unknown>> = {
   container: (provided) => ({
     ...provided,
-    boxShadow: "0px 2px 24px 0px val(--color-black-8)",
+    boxShadow: "0 2px 24px 0 val(--color-black-8)",
     border: "1px solid var(--color-dark-50)",
     backgroundColor: "var(--color-white)",
     borderRadius: 10,

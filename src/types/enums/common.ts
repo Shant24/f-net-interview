@@ -4,7 +4,6 @@ export enum PagesEnum {
   REGISTER_AS_DONOR = "/auth/register/donor",
   FORGOT_PASSWORD = "/auth/forgot-password",
   ERROR_PAGE = "/error-page",
-  RESET_PASSWORD = "/auth/reset-password",
   NOT_FOUND = "/404",
 
   HOME = "/",

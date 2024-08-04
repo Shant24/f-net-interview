@@ -77,7 +77,7 @@ const Routes = () => {
               element: <lazyRoutes.LoginPage />,
             },
             {
-              path: PagesEnum.RESET_PASSWORD,
+              path: PagesEnum.FORGOT_PASSWORD,
               element: <lazyRoutes.RecoveryPassword />,
             },
             {

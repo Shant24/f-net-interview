@@ -10,10 +10,10 @@ import type {
 import type { IOption } from "@/types";
 import type { DropdownButtonProps } from "@/components/DropdownButton";
 import Select from "react-select";
-import { genericMemo } from "@/helpers";
+import { typedMemo } from "@/helpers";
 import DropdownIndicatorIcon from "@/components/icons/DropdownIndicatorIcon";
 import DropdownButton from "@/components/DropdownButton";
-import FiledWrapper from "@/components/FiledWrapper";
+import FiledWrapper from "@/components/Form/FiledWrapper";
 import Dropdown from "./components/Dropdown";
 import DropdownInput from "./components/DropdownInput";
 import DropdownOption from "./components/DropdownOption";
@@ -120,4 +120,4 @@ const CustomSelect = <TOption extends IOption = IOption, IsMulti extends boolean
   );
 };
 
-export default genericMemo(CustomSelect);
+export default typedMemo(CustomSelect);

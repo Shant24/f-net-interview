@@ -1,77 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ZodType } from "zod";
-import type { IOption } from "@/types";
 import { z } from "zod";
+import { Link } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
-import { isValidPhoneNumber } from "react-phone-number-input";
-import PhoneNumberInput from "@/components/PhoneNumberInput";
-import CustomSelect from "@/components/CustomSelect";
-import FormInput from "@/components/FormInput";
-import names from "@/data/names.json";
+import { PagesEnum } from "@/types/enums";
+import { lazyRoutes } from "@/routes";
+import EyeOpenIcon from "@/components/icons/EyeOpenIcon";
+import EyeCoseIcon from "@/components/icons/EyeCoseIcon";
+import AuthFormCard from "@/components/AuthFormCard";
+import FormInput from "@/components/Form/FormInput";
+import Button from "@/components/Button";
 import styles from "./styles.module.scss";
+
+const defaultValues: ILoginRequest = {
+  email: "",
+  password: "",
+};
 
 interface ILoginRequest {
   email: string;
   password: string;
-  confirmPassword: string;
-  phone: string;
 }
 
 const LoginPage = () => {
-  const { t } = useTranslation("form");
-  const [namesOption, setNamesOption] = useState<IOption | null>(null);
+  const { t } = useTranslation(["form", "auth"]);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
-  const loginSchema: ZodType<ILoginRequest> = z
-    .object({
-      email: z
-        .string()
-        .min(1, {
-          message: t("errors.email.required"),
-        })
-        .email({ message: t("errors.email.invalid") }),
-      password: z
-        .string()
-        .min(1, {
-          message: t("errors.password.required"),
-        })
-        .min(8, {
-          message: t("errors.password.min"),
-        })
-        .max(30, {
-          message: t("errors.password.max"),
-        }),
-      confirmPassword: z
-        .string()
-        .min(1, {
-          message: t("errors.confirmPassword.required"),
-        })
-        .min(8, {
-          message: t("errors.password.min"),
-        })
-        .max(30, {
-          message: t("errors.password.max"),
-        }),
-      phone: z
-        .string()
-        .min(2, t("errors.phone.invalid"))
-        .refine((value) => isValidPhoneNumber(value), {
-          message: t("errors.phone.invalid"),
-        }),
-    })
-    .refine((data) => data.password === data.confirmPassword, {
-      message: t("errors.confirmPassword.match"),
-      path: ["confirmPassword"],
-    });
+  const loginSchema: ZodType<ILoginRequest> = z.object({
+    email: z
+      .string()
+      .min(1, {
+        message: t("form:errors.email.required"),
+      })
+      .email({ message: t("form:errors.email.invalid") }),
+
+    password: z
+      .string()
+      .min(1, {
+        message: t("form:errors.password.required"),
+      })
+      .min(8, {
+        message: t("form:errors.password.min"),
+      })
+      .max(30, {
+        message: t("form:errors.password.max"),
+      }),
+  });
 
   const methods = useForm<ILoginRequest>({
-    defaultValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      phone: "",
-    },
+    defaultValues,
     reValidateMode: "onSubmit",
     resolver: zodResolver(loginSchema),
   });
@@ -82,51 +61,78 @@ const LoginPage = () => {
     handleSubmit,
   } = methods;
 
+  useEffect(() => {
+    lazyRoutes.RecoveryPassword.preload();
+    lazyRoutes.RegisterAsTeacherPage.preload();
+    lazyRoutes.RegisterAsDonorPage.preload();
+  }, []);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordHidden((prevState) => !prevState);
+  };
+
   const handleFormSubmit = (data: ILoginRequest) => {
+    lazyRoutes.HomePage.preload();
     // eslint-disable-next-line no-console
     console.log("data", data);
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)}>
+    <AuthFormCard onSubmit={handleSubmit(handleFormSubmit)}>
+      <AuthFormCard.Header title={t("auth:signIn")} subtitle={t("auth:welcomeBack")} />
+
       <FormProvider {...methods}>
-        <div className={styles.fieldsWrapper}>
-          <FormInput
-            type="text"
-            placeholder={t("titles.email")}
-            errorMessage={errors.email?.message}
-            {...register("email")}
-          />
+        <AuthFormCard.Body>
+          <div className={styles.fieldsWrapper}>
+            <FormInput
+              type="email"
+              autoComplete="email"
+              placeholder={t("form:titles.email")}
+              errorMessage={errors.email?.message}
+              {...register("email")}
+            />
 
-          <FormInput
-            type="password"
-            placeholder={t("titles.password")}
-            errorMessage={errors.password?.message}
-            {...register("password")}
-          />
+            <FormInput
+              type={isPasswordHidden ? "password" : "text"}
+              autoComplete="password"
+              placeholder={t("form:titles.password")}
+              errorMessage={errors.password?.message}
+              endIcon={
+                <Button variant="icon" onClick={togglePasswordVisibility}>
+                  {isPasswordHidden ? <EyeOpenIcon /> : <EyeCoseIcon />}
+                </Button>
+              }
+              {...register("password")}
+            />
+          </div>
 
-          <FormInput
-            type="password"
-            placeholder={t("titles.confirmPassword")}
-            errorMessage={errors.confirmPassword?.message}
-            {...register("confirmPassword")}
-          />
+          <div className={styles.actions}>
+            <Link to={PagesEnum.FORGOT_PASSWORD} className={styles.toForgotPassword}>
+              {t("auth:forgotPassword")}
+            </Link>
 
-          <PhoneNumberInput fieldKey="phone" />
-
-          <CustomSelect
-            options={names}
-            value={namesOption}
-            handleValueChange={setNamesOption}
-            errorMessage={errors.phone?.message}
-          />
-        </div>
+            <Button type="submit" fullWidth className={styles.signInButton}>
+              {t("auth:signIn")}
+            </Button>
+          </div>
+        </AuthFormCard.Body>
       </FormProvider>
 
-      <div>
-        <button type="submit">Login</button>
-      </div>
-    </form>
+      {/* <AuthFormCard.Message></AuthFormCard.Message> */}
+
+      <AuthFormCard.Footer resetStyles className={styles.footer}>
+        <p>{t("auth:registerAsA")}</p>
+
+        <div className="twoColumns">
+          <Button as={Link} to={PagesEnum.REGISTER_AS_TEACHER} variant="secondary" textSize="sm">
+            {t("auth:teacher")}
+          </Button>
+          <Button as={Link} to={PagesEnum.REGISTER_AS_DONOR} variant="secondary" textSize="sm">
+            {t("auth:donor")}
+          </Button>
+        </div>
+      </AuthFormCard.Footer>
+    </AuthFormCard>
   );
 };
 

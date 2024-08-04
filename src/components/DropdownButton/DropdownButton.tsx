@@ -2,7 +2,7 @@ import clsx from "clsx";
 import ChevronDownIcon from "@/components/icons/ChevronDownIcon";
 import styles from "./styles.module.scss";
 
-export interface DropdownButtonProps extends Omit<React.HTMLProps<HTMLButtonElement>, "children" | "type"> {
+export interface DropdownButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children" | "type"> {
   isOpen?: boolean;
   label?: string;
   valueLabel?: string;
