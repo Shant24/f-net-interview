@@ -1,7 +1,9 @@
-// import { createSlice } from "@reduxjs/toolkit";
 import { createAppSlice } from "./common";
 
-const initialState = {};
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface AppState {}
+
+const initialState: AppState = {};
 
 export const appSlice = createAppSlice({
   name: "app",

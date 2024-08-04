@@ -7,5 +7,3 @@ export const LANGUAGES_MAP = {
   hy: "hy",
   ru: "ru",
 };
-
-export const LANG_LOCAL_STORAGE_CODE = "i18nextLng";

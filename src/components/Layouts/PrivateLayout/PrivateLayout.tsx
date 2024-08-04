@@ -1,11 +1,13 @@
 import { Navigate } from "react-router-dom";
 import { PagesEnum } from "@/types/enums";
-import { useAuth } from "@/hooks";
+import { useAuth } from "@/store/hooks";
 import PageLoading from "@/components/PageLoading";
 import BaseLayout from "@/components/Layouts/BaseLayout";
 
 const PrivateLayout = () => {
-  const { user, tokensData } = useAuth();
+  const {
+    authData: { user, tokensData },
+  } = useAuth();
 
   if (tokensData?.accessToken && !user?.data) {
     return <PageLoading />;

@@ -1,11 +1,13 @@
 import type { LangCode } from "./types";
-import { DEFAULT_LANGUAGE, LANG_LOCAL_STORAGE_CODE } from "./constants";
+import { localStorageManager } from "@/utils/storageManager";
+import { STORAGE_KEYS } from "@/constants";
+import { DEFAULT_LANGUAGE } from "./constants";
 
-export const getLocalStorageLanguage = () => localStorage.getItem(LANG_LOCAL_STORAGE_CODE) as LangCode | "";
+export const getLocalStorageLanguage = () => localStorageManager.getItem<LangCode, true>(STORAGE_KEYS.i18n, true);
 
-export const removeLocalStorageLanguage = () => localStorage.removeItem(LANG_LOCAL_STORAGE_CODE);
+export const removeLocalStorageLanguage = () => localStorageManager.removeItem(STORAGE_KEYS.i18n);
 
-export const setLocalStorageLanguage = (value: LangCode) => localStorage.setItem(LANG_LOCAL_STORAGE_CODE, value);
+export const setLocalStorageLanguage = (value: LangCode) => localStorageManager.setItem(STORAGE_KEYS.i18n, value);
 
 export const checkLanguageIsSupported = (language?: LangCode, supportedLanguages?: LangCode[]) => {
   if (!language) return false;

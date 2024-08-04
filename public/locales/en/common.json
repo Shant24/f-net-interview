@@ -1,1 +1,10 @@
-{}
+{
+  "navbar": {
+    "homepage": "HOMEPAGE",
+    "teachers": "TEACHERS",
+    "donors": "DONORS",
+    "aboutUs": "ABOUT US",
+    "contactUs": "CONTACT US",
+    "blog": "BLOG"
+  }
+}

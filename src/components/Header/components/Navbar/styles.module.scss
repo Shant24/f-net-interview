@@ -1,0 +1,46 @@
+.navbar {
+  ul,
+  li {
+    list-style: none;
+  }
+
+  ul {
+    display: flex;
+    gap: 48px;
+  }
+
+  a {
+    display: block;
+    position: relative;
+    color: var(--color-white-85);
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+
+    &[aria-disabled="true"] {
+      cursor: default;
+    }
+
+    &::after {
+      content: "";
+      height: 2px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: transparent;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover,
+    &.active {
+      color: var(--color-light);
+
+      &::after {
+        background: var(--color-light);
+      }
+    }
+  }
+}
