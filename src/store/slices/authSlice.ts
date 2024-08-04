@@ -3,12 +3,12 @@ import { sessionStorageManager } from "@/utils/storageManager";
 import { STORAGE_KEYS } from "@/constants";
 import { createAppSlice } from "./common";
 
-interface AuthState {
+export interface IAuthState {
   user: { data: unknown } | null;
   tokensData: { accessToken: string; refreshToken: string } | null;
 }
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
   user: sessionStorageManager.getItem(STORAGE_KEYS.USER),
   tokensData: sessionStorageManager.getItem(STORAGE_KEYS.TOKEN),
 };
@@ -17,13 +17,13 @@ export const authSlice = createAppSlice({
   name: "auth",
   initialState,
   reducers: (create) => ({
-    setUser: create.reducer((state, action: PayloadAction<AuthState["user"]>) => {
+    setUser: create.reducer((state, action: PayloadAction<IAuthState["user"]>) => {
       state.user = action.payload;
     }),
-    setTokenData: create.reducer((state, action: PayloadAction<AuthState["tokensData"]>) => {
+    setTokenData: create.reducer((state, action: PayloadAction<IAuthState["tokensData"]>) => {
       state.tokensData = action.payload;
     }),
-    setAuthData: create.reducer((state, action: PayloadAction<AuthState>) => {
+    setAuthData: create.reducer((state, action: PayloadAction<IAuthState>) => {
       state.user = action.payload.user;
       state.tokensData = action.payload.tokensData;
     }),

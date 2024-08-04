@@ -1,9 +1,9 @@
 import { createAppSlice } from "./common";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface AppState {}
+interface IAppState {}
 
-const initialState: AppState = {};
+const initialState: IAppState = {};
 
 export const appSlice = createAppSlice({
   name: "app",
