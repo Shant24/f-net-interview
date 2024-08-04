@@ -20,7 +20,7 @@ AuthFormCard.Header = (props: AuthFormCardHeaderProps) => {
   return (
     <div {...restProps} className={clsx(styles.cardHeader, restProps.className)}>
       <h1>{title}</h1>
-      <h3>{subtitle}</h3>
+      <p>{subtitle}</p>
     </div>
   );
 };

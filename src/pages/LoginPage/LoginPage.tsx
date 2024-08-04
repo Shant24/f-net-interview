@@ -98,7 +98,12 @@ const LoginPage = () => {
               placeholder={t("form:titles.password")}
               errorMessage={errors.password?.message}
               endIcon={
-                <Button variant="icon" onClick={togglePasswordVisibility}>
+                <Button
+                  name="password-toggle"
+                  aria-label="password toggle"
+                  variant="icon"
+                  onClick={togglePasswordVisibility}
+                >
                   {isPasswordHidden ? <EyeOpenIcon /> : <EyeCoseIcon />}
                 </Button>
               }
@@ -111,7 +116,7 @@ const LoginPage = () => {
               {t("auth:forgotPassword")}
             </Link>
 
-            <Button type="submit" fullWidth className={styles.signInButton}>
+            <Button name="sign-in-button" type="submit" fullWidth className={styles.signInButton}>
               {t("auth:signIn")}
             </Button>
           </div>

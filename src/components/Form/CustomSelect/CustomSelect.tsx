@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type {
   GroupBase,
   MultiValue,
@@ -59,6 +59,20 @@ const CustomSelect = <TOption extends IOption = IOption, IsMulti extends boolean
     renderDropdownButton,
   } = props;
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.head
+        .querySelector('meta[name="viewport"]')
+        ?.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0");
+    }
+
+    return () => {
+      document.head
+        .querySelector('meta[name="viewport"]')
+        ?.setAttribute("content", "width=device-width, initial-scale=1.0");
+    };
+  }, [isOpen]);
 
   const toggleOpen = () => setIsOpen((prev) => !prev);
 

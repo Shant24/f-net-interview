@@ -11,6 +11,8 @@ const AuthButtons = () => {
   return (
     <div className={styles.container}>
       <button
+        type="button"
+        name="auth-button"
         className={styles.link}
         onClick={isAuthorized ? signOut : signIn}
         onMouseEnter={isAuthorized ? lazyRoutes.LoginPage.preload : lazyRoutes.HomePage.preload}

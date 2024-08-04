@@ -17,6 +17,7 @@ const DropdownButton = (props: DropdownButtonProps) => {
     <button
       {...restProps}
       type="button"
+      name="dropdown-button"
       className={clsx(styles.dropdownButton, errorMessage && styles.error, className)}
     >
       <div>
