@@ -5,11 +5,12 @@ import styles from "./styles.module.scss";
 
 interface Props {
   isOpen: boolean;
+  continueText: string;
   onContinue: () => void;
   onLeave: () => void;
 }
 
-const LeavePageConfirmModal = ({ isOpen, onContinue, onLeave }: Props) => {
+const LeavePageConfirmModal = ({ isOpen, continueText, onContinue, onLeave }: Props) => {
   const { t } = useTranslation("auth");
   const title = t("pageLeaveMessage");
 
@@ -20,7 +21,7 @@ const LeavePageConfirmModal = ({ isOpen, onContinue, onLeave }: Props) => {
       </div>
       <div className={styles.footer}>
         <Button variant="primary" fullWidth onClick={onContinue}>
-          {t("continueRegistration")}
+          {continueText}
         </Button>
 
         <Button variant="secondary" fullWidth onClick={onLeave}>

@@ -85,6 +85,18 @@ input[type="checkbox"] {
   }
 }
 
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 .twoColumns {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

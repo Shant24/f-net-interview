@@ -3,7 +3,7 @@
 /**
  * Class representing a storage manager.
  */
-class StorageManager {
+export class CustomStorageManager {
   /**
    * The storage object (e.g., localStorage or sessionStorage).
    * @type {Storage}
@@ -25,7 +25,7 @@ class StorageManager {
    */
   setItem(key: string, value: unknown) {
     try {
-      this.manager.setItem(key, JSON.stringify(value));
+      this.manager.setItem(key, typeof value === "string" ? value : JSON.stringify(value));
     } catch (_error: any) {
       console.error(new Error(`Error setting item in storage`));
     }
@@ -161,5 +161,5 @@ class StorageManager {
   }
 }
 
-export const localStorageManager = new StorageManager(localStorage);
-export const sessionStorageManager = new StorageManager(sessionStorage);
+export const localStorageManager = new CustomStorageManager(localStorage);
+export const sessionStorageManager = new CustomStorageManager(sessionStorage);

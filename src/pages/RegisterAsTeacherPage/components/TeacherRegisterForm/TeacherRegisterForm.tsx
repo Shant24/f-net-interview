@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { StepComponentProps } from "@/components/AuthFormSteps";
+import type { IStepComponentProps } from "@/components/AuthFormSteps";
 import type { ZodType } from "zod";
 import { z } from "zod";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { isValidPhoneNumber } from "react-phone-number-input";
+import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "@/constants";
 import { FakeRequestService } from "@/utils/fakeRequestService";
 import { PagesEnum } from "@/types/enums";
 import { lazyRoutes } from "@/routes";
@@ -53,7 +54,7 @@ const defaultValues: IRegisterAsTeacherRequest = {
   confirmPassword: "",
 };
 
-const TeacherRegisterForm = ({ nextStep }: StepComponentProps) => {
+const TeacherRegisterForm = ({ nextStep }: IStepComponentProps) => {
   const { t } = useTranslation(["form", "auth"]);
   const [isNewPasswordHidden, setIsNewPasswordHidden] = useState(true);
   const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] = useState(true);
@@ -67,7 +68,7 @@ const TeacherRegisterForm = ({ nextStep }: StepComponentProps) => {
         .min(1, {
           message: t("form:errors.name.required"),
         })
-        .max(30, {
+        .max(PASSWORD_MAX_LENGTH, {
           message: t("form:errors.name.max"),
         }),
 
@@ -76,7 +77,7 @@ const TeacherRegisterForm = ({ nextStep }: StepComponentProps) => {
         .min(1, {
           message: t("form:errors.lastName.required"),
         })
-        .max(30, {
+        .max(PASSWORD_MAX_LENGTH, {
           message: t("form:errors.lastName.max"),
         }),
 
@@ -133,10 +134,10 @@ const TeacherRegisterForm = ({ nextStep }: StepComponentProps) => {
         .min(1, {
           message: t("form:errors.password.required"),
         })
-        .min(8, {
+        .min(PASSWORD_MIN_LENGTH, {
           message: t("form:errors.password.min"),
         })
-        .max(30, {
+        .max(PASSWORD_MAX_LENGTH, {
           message: t("form:errors.password.max"),
         }),
 
@@ -145,10 +146,10 @@ const TeacherRegisterForm = ({ nextStep }: StepComponentProps) => {
         .min(1, {
           message: t("form:errors.confirmPassword.required"),
         })
-        .min(8, {
+        .min(PASSWORD_MIN_LENGTH, {
           message: t("form:errors.confirmPassword.min"),
         })
-        .max(30, {
+        .max(PASSWORD_MAX_LENGTH, {
           message: t("form:errors.confirmPassword.max"),
         }),
     })
@@ -200,7 +201,7 @@ const TeacherRegisterForm = ({ nextStep }: StepComponentProps) => {
     setIsLoading(true);
 
     try {
-      const response = await FakeRequestService.post("/register-as-teacher", formData, formData);
+      const response = await FakeRequestService.post("/register-as-teacher", formData, { successData: formData });
       nextStep({ from: "teacher", data: response.data });
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -324,7 +325,11 @@ const TeacherRegisterForm = ({ nextStep }: StepComponentProps) => {
         </AuthFormCard.Footer>
       </AuthFormCard>
 
-      <UnsavedChangesModal isPageDirty={isDirty} shouldBlockRouting={isDirty} />
+      <UnsavedChangesModal
+        continueText={t("auth:continueRegistration")}
+        isPageDirty={isDirty}
+        shouldBlockRouting={isDirty}
+      />
 
       <ErrorModal isOpen={!!requestError} errorMessage={requestError} onClose={handleClearRequestError} />
     </>

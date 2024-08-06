@@ -1,12 +1,25 @@
 import clsx from "clsx";
 import SuccessMessageIcon from "@/components/icons/SuccessMessageIcon";
 import ErrorMessageIcon from "@/components/icons/ErrorMessageIcon";
+import CloseIcon from "@/components/icons/CloseIcon";
+import Button from "@/components/Button";
 import styles from "./styles.module.scss";
 
-const AuthFormCard = (props: React.PropsWithChildren<React.FormHTMLAttributes<HTMLFormElement>>) => {
-  const { children, ...formProps } = props;
+interface IAuthFormCardProps extends React.FormHTMLAttributes<HTMLFormElement> {
+  onCloseWithButton?: () => void;
+}
+
+const AuthFormCard = ({ children, onCloseWithButton, ...formProps }: React.PropsWithChildren<IAuthFormCardProps>) => {
   return (
-    <form {...formProps} className={clsx(styles.card, formProps.className)}>
+    <form
+      {...formProps}
+      className={clsx(styles.card, !!onCloseWithButton && styles.cardWithCloseButton, formProps.className)}
+    >
+      {onCloseWithButton && (
+        <Button variant="icon" className={styles.closeButton} onClick={onCloseWithButton}>
+          <CloseIcon />
+        </Button>
+      )}
       {children}
     </form>
   );
@@ -17,8 +30,7 @@ interface AuthFormCardHeaderProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   subtitle: string;
 }
 
-AuthFormCard.Header = (props: AuthFormCardHeaderProps) => {
-  const { title, subtitle, ...restProps } = props;
+AuthFormCard.Header = ({ title, subtitle, ...restProps }: AuthFormCardHeaderProps) => {
   return (
     <div {...restProps} className={clsx(styles.cardHeader, restProps.className)}>
       <h1>{title}</h1>
@@ -40,8 +52,7 @@ interface AuthFormCardMessageProps extends Omit<React.HTMLAttributes<HTMLDivElem
   message?: string;
 }
 
-AuthFormCard.Message = (props: AuthFormCardMessageProps) => {
-  const { status, message, ...restProps } = props;
+AuthFormCard.Message = ({ status, message, ...restProps }: AuthFormCardMessageProps) => {
   return status && message ? (
     <div
       {...restProps}

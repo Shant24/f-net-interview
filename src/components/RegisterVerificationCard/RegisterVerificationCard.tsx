@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ZodType } from "zod";
-import type { StepComponentProps } from "@/components/AuthFormSteps";
+import type { IStepComponentProps } from "@/components/AuthFormSteps";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ const defaultValues: IRegisterVerificationCardRequest = {
   code: "",
 };
 
-const RegisterVerificationCard = ({ step, componentsState }: StepComponentProps) => {
+const RegisterVerificationCard = ({ step, componentsState }: IStepComponentProps) => {
   const { t } = useTranslation(["form", "auth"]);
   const navigate = useNavigate();
   const [requestError, setRequestError] = useState<string | null>(null);
@@ -62,7 +62,7 @@ const RegisterVerificationCard = ({ step, componentsState }: StepComponentProps)
 
     try {
       const verifyPrevData = componentsState[step - 1].data ?? {};
-      await FakeRequestService.post("/verify", { ...formData, ...verifyPrevData }, formData);
+      await FakeRequestService.post("/verify", { ...formData, ...verifyPrevData }, { successData: formData });
 
       const from = componentsState[step - 1].from;
 
@@ -116,7 +116,11 @@ const RegisterVerificationCard = ({ step, componentsState }: StepComponentProps)
         </AuthFormCard.Footer>
       </AuthFormCard>
 
-      <UnsavedChangesModal isPageDirty={!isSubmitted} shouldBlockRouting={!isSubmitted} />
+      <UnsavedChangesModal
+        continueText={t("auth:continueRecoveryPassword")}
+        isPageDirty={!isSubmitted}
+        shouldBlockRouting={!isSubmitted}
+      />
 
       <ErrorModal isOpen={!!requestError} errorMessage={requestError} onClose={handleClearRequestError} />
     </>

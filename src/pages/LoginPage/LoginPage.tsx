@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
+import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "@/constants";
 import { FakeRequestService } from "@/utils/fakeRequestService";
 import { loggedInData, useAuth } from "@/store/hooks";
 import { PagesEnum } from "@/types/enums";
@@ -51,10 +52,10 @@ const LoginPage = () => {
       .min(1, {
         message: t("form:errors.password.required"),
       })
-      .min(8, {
+      .min(PASSWORD_MIN_LENGTH, {
         message: t("form:errors.password.min"),
       })
-      .max(30, {
+      .max(PASSWORD_MAX_LENGTH, {
         message: t("form:errors.password.max"),
       }),
   });
@@ -113,7 +114,7 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await FakeRequestService.post("/login", formData, loggedInData);
+      const response = await FakeRequestService.post("/login", formData, { successData: loggedInData });
 
       signIn(response.data);
 

@@ -4,6 +4,7 @@
     "lastName": "Last Name",
     "email": "Email",
     "password": "Password",
+    "newPassword": "New Password",
     "confirmPassword": "Confirm Password",
     "selectCode": "Select Code",
     "phone": "Phone Number",
@@ -36,6 +37,11 @@
       "required": "Password is required",
       "min": "Password is too short",
       "max": "Password is too long"
+    },
+    "newPassword": {
+      "required": "New Password is required",
+      "min": "New Password is too short",
+      "max": "New Password is too long"
     },
     "confirmPassword": {
       "required": "Confirm password is required",
@@ -72,7 +78,10 @@
       "required": "Grade is required"
     },
     "code": {
-      "required": "Code is required"
+      "required": "Code is required",
+      "min": "Code is too short",
+      "max": "Code is too long",
+      "invalid": "Verification code error. Try again."
     }
   },
   "search": "Search",

@@ -18,6 +18,7 @@ const Header = () => {
 
       <Link
         to={isAuthorized ? PagesEnum.HOME : PagesEnum.LOGIN}
+        className={styles.logo}
         onMouseEnter={isAuthorized ? lazyRoutes.HomePage.preload : lazyRoutes.LoginPage.preload}
       >
         <img src="/assets/svg/logo-with-text.svg" alt="logo" />

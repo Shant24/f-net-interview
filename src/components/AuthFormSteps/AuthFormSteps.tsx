@@ -2,30 +2,30 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 
-export interface StepComponentState {
-  from: "teacher" | "donor";
+export interface IStepComponentState {
+  from: "teacher" | "donor" | "recovery-password";
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: Record<string, any>;
 }
 
-export interface StepComponentProps {
+export interface IStepComponentProps {
   step: number;
   totalSteps: number;
-  componentsState: StepComponentState[];
-  nextStep: (state: StepComponentState) => void;
+  componentsState: IStepComponentState[];
+  nextStep: (state: IStepComponentState) => void;
 }
 
 interface Props {
-  renderComponents: ((props: StepComponentProps) => React.ReactElement)[];
+  renderComponents: ((props: IStepComponentProps) => React.ReactElement)[];
 }
 
 const AuthFormSteps = ({ renderComponents }: Props) => {
   const totalSteps = renderComponents.length;
   const [step, setStep] = useState(0);
-  const [componentsState, setComponentsState] = useState<StepComponentState[]>([]);
+  const [componentsState, setComponentsState] = useState<IStepComponentState[]>([]);
 
-  const nextStep = (state: StepComponentState) => {
+  const nextStep = (state: IStepComponentState) => {
     setComponentsState((prev) => {
       const newState = [...prev];
       newState[step] = state;

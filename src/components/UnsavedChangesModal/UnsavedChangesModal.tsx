@@ -9,11 +9,12 @@ interface PageMeta {
 }
 
 interface Props {
-  shouldBlockRouting?: boolean;
   isPageDirty?: boolean;
+  shouldBlockRouting?: boolean;
+  continueText: string;
 }
 
-const UnsavedChangesModal = ({ shouldBlockRouting = false, isPageDirty = false }: Props) => {
+const UnsavedChangesModal = ({ isPageDirty = false, shouldBlockRouting = false, continueText }: Props) => {
   const { useHandlers, handleUnsavedChanges, useRegisterUnsavedChanges } = useUnsavedChanges();
   const { isVisible, onContinue, onLeave } = useHandlers<PageMeta>();
 
@@ -38,7 +39,9 @@ const UnsavedChangesModal = ({ shouldBlockRouting = false, isPageDirty = false }
 
   useBlockNavigation(handleNavigationBlock, shouldBlockRouting);
 
-  return <LeavePageConfirmModal isOpen={isVisible} onContinue={onContinue} onLeave={onLeave} />;
+  return (
+    <LeavePageConfirmModal continueText={continueText} isOpen={isVisible} onContinue={onContinue} onLeave={onLeave} />
+  );
 };
 
 export default UnsavedChangesModal;
