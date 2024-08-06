@@ -43,7 +43,7 @@ export const customSelectStyles: StylesConfig<unknown, false, GroupBase<unknown>
     borderTop: "1px solid var(--color-dark-50)",
   }),
 
-  option: (provided, { isSelected, isMulti }) => {
+  option: (provided, { isSelected, isMulti, isFocused }) => {
     const multiValueStyles: React.CSSProperties = {
       display: "flex",
       justifyContent: "space-between",
@@ -56,7 +56,7 @@ export const customSelectStyles: StylesConfig<unknown, false, GroupBase<unknown>
       margin: "0 0 2px 0",
       padding: "0 16px",
       backgroundColor: "transparent",
-      color: "var(--color-dark-80)",
+      color: isFocused && !isSelected ? "var(--color-dark)" : "var(--color-dark-80)",
       fontSize: 14,
       lineHeight: "24px",
       fontWeight: isSelected ? 600 : 400,
@@ -75,6 +75,8 @@ export const customSelectStyles: StylesConfig<unknown, false, GroupBase<unknown>
 
   menuList: (provided) => ({ ...provided, maxHeight: 188 }),
 
+  noOptionsMessage: (provided) => ({ ...provided, color: "var(--color-gray-80)" }),
+
   // singleValue: (provided) => ({ ...provided }),
   // multiValue: (provided) => ({ ...provided }),
 
@@ -86,7 +88,6 @@ export const customSelectStyles: StylesConfig<unknown, false, GroupBase<unknown>
   // group: (provided) => ({ ...provided }),
   // groupHeading: (provided) => ({ ...provided }),
   // indicatorsContainer: (provided) => ({ ...provided }),
-  // noOptionsMessage: (provided) => ({ ...provided }),
   // loadingMessage: (provided) => ({ ...provided }),
   // loadingIndicator: (provided) => ({ ...provided }),
   // menuPortal: (provided) => ({ ...provided }),

@@ -14,6 +14,7 @@
     "server": "json-server --watch db.json --port 4001"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.2",
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.2.7",
     "clsx": "^2.1.1",

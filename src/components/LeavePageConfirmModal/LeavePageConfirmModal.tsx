@@ -1,0 +1,34 @@
+import { useTranslation } from "react-i18next";
+import Button from "@/components/Button";
+import Modal from "@/components/Modal";
+import styles from "./styles.module.scss";
+
+interface Props {
+  isOpen: boolean;
+  onContinue: () => void;
+  onLeave: () => void;
+}
+
+const LeavePageConfirmModal = ({ isOpen, onContinue, onLeave }: Props) => {
+  const { t } = useTranslation("auth");
+  const title = t("pageLeaveMessage");
+
+  return (
+    <Modal id={title} isOpen={isOpen} onClose={onContinue}>
+      <div className={styles.header}>
+        <p>{title}</p>
+      </div>
+      <div className={styles.footer}>
+        <Button variant="primary" fullWidth onClick={onContinue}>
+          {t("continueRegistration")}
+        </Button>
+
+        <Button variant="secondary" fullWidth onClick={onLeave}>
+          {t("leaveAnyway")}
+        </Button>
+      </div>
+    </Modal>
+  );
+};
+
+export default LeavePageConfirmModal;

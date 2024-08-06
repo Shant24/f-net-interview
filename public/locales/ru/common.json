@@ -6,5 +6,9 @@
     "aboutUs": "О НАС",
     "contactUs": "СВЯЗАТЬСЯ С НАМИ",
     "blog": "БЛОГ"
+  },
+  "requests": {
+    "successResponse": "Успешный ответ",
+    "errorResponse": "Ошибка ответа"
   }
 }

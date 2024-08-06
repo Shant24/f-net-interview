@@ -27,6 +27,10 @@ export const authSlice = createAppSlice({
       state.user = action.payload.user;
       state.tokensData = action.payload.tokensData;
     }),
+    clearAuthData: create.reducer((state) => {
+      state.user = null;
+      state.tokensData = null;
+    }),
   }),
   selectors: {
     selectUser: (state) => state.user,
@@ -35,7 +39,7 @@ export const authSlice = createAppSlice({
   },
 });
 
-export const { setUser, setTokenData, setAuthData } = authSlice.actions;
+export const { setUser, setTokenData, setAuthData, clearAuthData } = authSlice.actions;
 
 export const { selectUser, selectTokenData, selectAuthData } = authSlice.selectors;
 

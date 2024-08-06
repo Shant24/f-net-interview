@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import clsx from "clsx";
 import ChevronDownIcon from "@/components/icons/ChevronDownIcon";
 import styles from "./styles.module.scss";
@@ -10,15 +11,16 @@ export interface DropdownButtonProps extends Omit<React.ButtonHTMLAttributes<HTM
   hideIcon?: boolean;
 }
 
-const DropdownButton = (props: DropdownButtonProps) => {
+const DropdownButton = forwardRef<HTMLButtonElement, DropdownButtonProps>((props, ref) => {
   const { className, isOpen, label = "Select", valueLabel, errorMessage, hideIcon, ...restProps } = props;
 
   return (
     <button
       {...restProps}
+      ref={ref}
       type="button"
       name="dropdown-button"
-      className={clsx(styles.dropdownButton, errorMessage && styles.error, className)}
+      className={clsx(styles.dropdownButton, isOpen && styles.focus, errorMessage && styles.error, className)}
     >
       <div>
         {!valueLabel && label && <span>{label}</span>}
@@ -29,6 +31,6 @@ const DropdownButton = (props: DropdownButtonProps) => {
       {!hideIcon && <ChevronDownIcon className={clsx(styles.buttonIcon, isOpen && styles.rotate)} />}
     </button>
   );
-};
+});
 
 export default DropdownButton;

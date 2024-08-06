@@ -6,5 +6,9 @@
     "aboutUs": "ABOUT US",
     "contactUs": "CONTACT US",
     "blog": "BLOG"
+  },
+  "requests": {
+    "successResponse": "Success response",
+    "errorResponse": "Error response"
   }
 }

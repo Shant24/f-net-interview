@@ -1,17 +1,13 @@
 import { useCallback } from "react";
-import { STORAGE_KEYS } from "@/constants";
+import type { IAuthState } from "@/store/slices/authSlice";
+import { clearAuthData, selectAuthData, setAuthData } from "@/store/slices/authSlice";
 import { sessionStorageManager } from "@/utils/storageManager";
-import { selectAuthData, setAuthData } from "@/store/slices/authSlice";
+import { STORAGE_KEYS } from "@/constants";
 import { useAppDispatch, useAppSelector } from "./common";
 
-const loggedInData = {
+export const loggedInData: IAuthState = {
   user: { data: {} },
   tokensData: { accessToken: "a", refreshToken: "r" },
-};
-
-const loggedOutData = {
-  user: null,
-  tokensData: null,
 };
 
 export const useAuth = () => {
@@ -19,15 +15,18 @@ export const useAuth = () => {
 
   const dispatch = useAppDispatch();
 
-  const signIn = useCallback(() => {
-    dispatch(setAuthData(loggedInData));
+  const signIn = useCallback(
+    (data: IAuthState) => {
+      dispatch(setAuthData(data));
 
-    sessionStorageManager.setItem(STORAGE_KEYS.USER, loggedInData.user);
-    sessionStorageManager.setItem(STORAGE_KEYS.TOKEN, loggedInData.tokensData);
-  }, [dispatch]);
+      sessionStorageManager.setItem(STORAGE_KEYS.USER, data.user);
+      sessionStorageManager.setItem(STORAGE_KEYS.TOKEN, data.tokensData);
+    },
+    [dispatch],
+  );
 
   const signOut = useCallback(() => {
-    dispatch(setAuthData(loggedOutData));
+    dispatch(clearAuthData());
 
     sessionStorageManager.removeItem(STORAGE_KEYS.USER);
     sessionStorageManager.removeItem(STORAGE_KEYS.TOKEN);

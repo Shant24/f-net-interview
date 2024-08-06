@@ -1,5 +1,9 @@
+import AuthFormSteps from "@/components/AuthFormSteps";
+import RegisterVerificationCard from "@/components/RegisterVerificationCard";
+import DonorRegisterForm from "./components/DonorRegisterForm";
+
 const RegisterAsDonorPage = () => {
-  return <div>RegisterAsDonorPage</div>;
+  return <AuthFormSteps renderComponents={[DonorRegisterForm, RegisterVerificationCard]} />;
 };
 
 export default RegisterAsDonorPage;

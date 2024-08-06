@@ -1,4 +1,6 @@
 import clsx from "clsx";
+import SuccessMessageIcon from "@/components/icons/SuccessMessageIcon";
+import ErrorMessageIcon from "@/components/icons/ErrorMessageIcon";
 import styles from "./styles.module.scss";
 
 const AuthFormCard = (props: React.PropsWithChildren<React.FormHTMLAttributes<HTMLFormElement>>) => {
@@ -33,21 +35,33 @@ AuthFormCard.Body = ({ children, ...restProps }: React.PropsWithChildren<React.H
   );
 };
 
-AuthFormCard.Message = ({ children, ...restProps }: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => {
-  return (
-    <div {...restProps} className={clsx(styles.cardMessage, restProps.className)}>
-      {children}
-    </div>
-  );
-};
-
-interface AuthFormCardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  resetStyles?: boolean;
+interface AuthFormCardMessageProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
+  status?: "success" | "error";
+  message?: string;
 }
 
-AuthFormCard.Footer = ({ children, resetStyles, ...restProps }: React.PropsWithChildren<AuthFormCardFooterProps>) => {
+AuthFormCard.Message = (props: AuthFormCardMessageProps) => {
+  const { status, message, ...restProps } = props;
+  return status && message ? (
+    <div
+      {...restProps}
+      className={clsx(
+        styles.cardMessage,
+        status === "success" && styles.success,
+        status === "error" && styles.error,
+        restProps.className,
+      )}
+    >
+      {status === "success" && <SuccessMessageIcon />}
+      {status === "error" && <ErrorMessageIcon />}
+      <p>{message}</p>
+    </div>
+  ) : null;
+};
+
+AuthFormCard.Footer = ({ children, ...restProps }: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => {
   return (
-    <div {...restProps} className={clsx(!resetStyles && styles.cardFooter, restProps.className)}>
+    <div {...restProps} className={clsx(styles.cardFooter, restProps.className)}>
       {children}
     </div>
   );

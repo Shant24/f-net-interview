@@ -1,0 +1,17 @@
+.header {
+  padding-bottom: 16px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--color-dark);
+  border-bottom: 1px solid var(--color-dark-50);
+}
+
+.footer {
+  margin-top: auto;
+
+  button:last-child {
+    margin-top: 24px;
+  }
+}

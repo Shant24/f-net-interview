@@ -6,5 +6,9 @@
     "aboutUs": "ՄԵՐ ՄԱՍԻՆ",
     "contactUs": "ԿԱՊ ՄԵԶ ՀԵՏ",
     "blog": "ԲԼՈԳ"
+  },
+  "requests": {
+    "successResponse": "Հաջող պատասխան",
+    "errorResponse": "Սխալ պատասխան"
   }
 }

@@ -11,9 +11,11 @@
     "region": "Region",
     "regionState": "Region/State",
     "cityVillage": "City, Village",
+    "city": "City",
     "school": "School",
     "subject": "Subject",
-    "grade": "Grade"
+    "grade": "Grade",
+    "code": "Code"
   },
   "errors": {
     "name": {
@@ -37,7 +39,9 @@
     },
     "confirmPassword": {
       "required": "Confirm password is required",
-      "match": "Passwords don't match"
+      "match": "Passwords don't match",
+      "min": "Confirm password is too short",
+      "max": "Confirm password is too long"
     },
     "phone": {
       "required": "Phone number is required",
@@ -55,6 +59,9 @@
     "cityVillage": {
       "required": "City, Village is required"
     },
+    "city": {
+      "required": "City is required"
+    },
     "school": {
       "required": "School is required"
     },
@@ -63,6 +70,11 @@
     },
     "grade": {
       "required": "Grade is required"
+    },
+    "code": {
+      "required": "Code is required"
     }
-  }
+  },
+  "search": "Search",
+  "noOptions": "No options"
 }

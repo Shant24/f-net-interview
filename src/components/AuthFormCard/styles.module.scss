@@ -1,5 +1,6 @@
 .card {
   flex: 1;
+  flex: 1;
   margin: 0 auto;
   padding: 16px;
   max-width: 432px;
@@ -10,36 +11,56 @@
   background: var(--color-light);
   box-shadow: 0 1px 24px 0 var(--color-gray-18);
   border-radius: 20px;
+}
 
-  &Header {
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--color-dark-50);
-    text-align: center;
+.cardHeader {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-dark-50);
+  text-align: center;
 
-    h1 {
-      font-size: 32px;
-      line-height: 24px;
-      font-weight: 700;
-    }
-
-    p {
-      margin-top: 16px;
-      font-size: 18px;
-      line-height: 24px;
-    }
+  h1 {
+    font-size: 32px;
+    line-height: 24px;
+    font-weight: 700;
   }
 
-  &Body {
-    padding: 16px 0;
-    flex: 1;
+  p {
+    margin-top: 16px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.cardBody {
+  height: auto;
+  padding: 16px 0;
+}
+
+.cardMessage {
+  flex: 1;
+  padding: 24px;
+  text-align: center;
+
+  &.success {
+    color: var(--color-primary);
   }
 
-  // &Message {
-  // }
-
-  &Footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  &.error {
+    color: var(--color-danger);
   }
+
+  p {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.cardFooter {
+  margin-top: auto;
+  padding-top: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 }

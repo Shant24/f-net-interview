@@ -1,5 +1,9 @@
+import AuthFormSteps from "@/components/AuthFormSteps";
+import RegisterVerificationCard from "@/components/RegisterVerificationCard";
+import TeacherRegisterForm from "./components/TeacherRegisterForm";
+
 const RegisterAsTeacherPage = () => {
-  return <div>RegisterAsTeacherPage</div>;
+  return <AuthFormSteps renderComponents={[TeacherRegisterForm, RegisterVerificationCard]} />;
 };
 
 export default RegisterAsTeacherPage;

@@ -69,6 +69,7 @@ module.exports = {
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/unbound-method": "off",
     "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
     "react/prop-types": "off",
     "react/display-name": "off",
   },

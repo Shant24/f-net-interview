@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   font-size: 16px;
   line-height: 24px;
   color: var(--color-dark);
@@ -13,12 +14,18 @@
   outline: none;
   cursor: pointer;
 
+  &:not(&.error).focus {
+    border-color: var(--color-primary);
+  }
+
   &.error {
-    border-color: var(--color-red);
+    border-color: var(--color-danger);
   }
 }
 
 .buttonIcon {
+  width: 10px;
+  min-width: 10px;
   transition: ease-in-out 0.2s;
 
   &.rotate {
