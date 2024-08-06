@@ -54,7 +54,7 @@ const defaultValues: IRegisterAsTeacherRequest = {
   confirmPassword: "",
 };
 
-const TeacherRegisterForm = ({ nextStep }: IStepComponentProps) => {
+const TeacherRegisterForm = ({ step, totalSteps, nextStep }: IStepComponentProps) => {
   const { t } = useTranslation(["form", "auth"]);
   const [isNewPasswordHidden, setIsNewPasswordHidden] = useState(true);
   const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] = useState(true);
@@ -214,11 +214,11 @@ const TeacherRegisterForm = ({ nextStep }: IStepComponentProps) => {
 
   return (
     <>
-      <AuthFormCard onSubmit={handleSubmit(handleFormSubmit)}>
+      <AuthFormCard onSubmit={handleSubmit(handleFormSubmit)} onlyOneFooterButton>
         <AuthFormCard.Header title={t("auth:signUp")} subtitle={t("auth:itIsQuick")} />
 
         <FormProvider {...methods}>
-          <AuthFormCard.Body className={styles.fieldsWrapper}>
+          <AuthFormCard.Body className={styles.fieldsWrapper} step={step} totalSteps={totalSteps}>
             <div className="twoColumns">
               <FormInput
                 type="text"
@@ -314,12 +314,12 @@ const TeacherRegisterForm = ({ nextStep }: IStepComponentProps) => {
           </AuthFormCard.Body>
         </FormProvider>
 
-        <AuthFormCard.Footer>
+        <AuthFormCard.Footer className={styles.footer}>
           <Link to={PagesEnum.REGISTER_AS_DONOR} className={styles.link}>
             {t("auth:registerAsADonor")}
           </Link>
 
-          <Button type="submit" variant="primary" textSize="sm" isLoading={isLoading}>
+          <Button type="submit" variant="primary" textSize="sm" isLoading={isLoading} mobileFullWidth>
             {t("auth:ok")}
           </Button>
         </AuthFormCard.Footer>

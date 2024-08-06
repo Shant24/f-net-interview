@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { PagesEnum } from "@/types/enums";
@@ -6,12 +7,16 @@ import { lazyRoutes } from "@/routes";
 import SignInIcon from "@/components/icons/SignInIcon";
 import styles from "./styles.module.scss";
 
-const AuthButtons = () => {
+interface Props {
+  isMobile?: boolean;
+}
+
+const AuthButtons = ({ isMobile }: Props) => {
   const { t } = useTranslation("auth");
   const { isAuthorized, signOut } = useAuth();
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, isMobile && styles.mobile)}>
       {isAuthorized ? (
         <button
           type="button"

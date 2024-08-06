@@ -31,7 +31,7 @@ const defaultValues: IRecoveryPasswordNewPasswordFormRequest = {
   confirmPassword: "",
 };
 
-const RecoveryPasswordNewPasswordForm = (_props: IStepComponentProps) => {
+const RecoveryPasswordNewPasswordForm = ({ step, totalSteps }: IStepComponentProps) => {
   const { t } = useTranslation(["form", "auth"]);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -180,11 +180,15 @@ const RecoveryPasswordNewPasswordForm = (_props: IStepComponentProps) => {
 
   return (
     <>
-      <AuthFormCard onSubmit={handleSubmit(handleFormSubmit)} onCloseWithButton={handleNavigateToLoginPage}>
+      <AuthFormCard
+        onlyOneFooterButton
+        onSubmit={handleSubmit(handleFormSubmit)}
+        onCloseWithButton={handleNavigateToLoginPage}
+      >
         <AuthFormCard.Header title={t("auth:recoverPassword")} subtitle={t("auth:pleaseEnterEmail")} />
 
         <FormProvider {...methods}>
-          <AuthFormCard.Body>
+          <AuthFormCard.Body step={step} totalSteps={totalSteps}>
             <FormInput
               type="number"
               autoComplete="one-time-code"

@@ -16,12 +16,16 @@ const languages: LocalesListItem[] = [
   { code: "ru", name: "Рус" },
 ].filter(({ code }) => getSupportedLanguages().includes(code as LangCode)) as LocalesListItem[];
 
-const LanguageSwitcher = () => {
+interface Props {
+  isMobile?: boolean;
+}
+
+const LanguageSwitcher = ({ isMobile }: Props) => {
   const { i18n } = useTranslation();
   const { changeLanguage } = useLocalization();
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, isMobile && styles.mobile)}>
       {languages.map(({ code, name }) => (
         <button
           key={code}

@@ -4,7 +4,11 @@ import clsx from "clsx";
 import { FakeRequestService } from "@/utils/fakeRequestService";
 import styles from "./styles.module.scss";
 
-const RequestResponseSwitcher = () => {
+interface Props {
+  isMobile?: boolean;
+}
+
+const RequestResponseSwitcher = ({ isMobile }: Props) => {
   const { t } = useTranslation("common");
   const [isSuccess, setIsSuccess] = useState(FakeRequestService.isSuccessful);
 
@@ -14,7 +18,7 @@ const RequestResponseSwitcher = () => {
   };
 
   return (
-    <label className={clsx(styles.container, !isSuccess && styles.error)}>
+    <label className={clsx(styles.container, isMobile && styles.mobile, !isSuccess && styles.error)}>
       <input type="checkbox" checked={isSuccess} onChange={handleSwitch} />
       {isSuccess ? t("requests.successResponse") : t("requests.errorResponse")}
     </label>

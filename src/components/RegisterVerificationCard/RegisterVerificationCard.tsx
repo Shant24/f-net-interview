@@ -23,7 +23,7 @@ const defaultValues: IRegisterVerificationCardRequest = {
   code: "",
 };
 
-const RegisterVerificationCard = ({ step, componentsState }: IStepComponentProps) => {
+const RegisterVerificationCard = ({ step, totalSteps, componentsState }: IStepComponentProps) => {
   const { t } = useTranslation(["form", "auth"]);
   const navigate = useNavigate();
   const [requestError, setRequestError] = useState<string | null>(null);
@@ -95,11 +95,11 @@ const RegisterVerificationCard = ({ step, componentsState }: IStepComponentProps
 
   return (
     <>
-      <AuthFormCard onSubmit={handleSubmit(handleFormSubmit)}>
+      <AuthFormCard onSubmit={handleSubmit(handleFormSubmit)} onlyOneFooterButton>
         <AuthFormCard.Header title={t("auth:verifyAccount")} subtitle={t("auth:pleaseCheckEmail")} />
 
         <FormProvider {...methods}>
-          <AuthFormCard.Body>
+          <AuthFormCard.Body step={step} totalSteps={totalSteps}>
             <FormInput
               type="text"
               placeholder={t("form:titles.code")}

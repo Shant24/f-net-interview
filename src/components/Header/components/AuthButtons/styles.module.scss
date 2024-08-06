@@ -2,6 +2,24 @@
   position: absolute;
   bottom: 16px;
   right: 120px;
+
+  &:not(.mobile) {
+    @media (max-width: 1279px) {
+      right: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &.mobile {
+    position: static;
+
+    .link {
+      color: var(--color-gray);
+    }
+  }
 }
 
 .link {

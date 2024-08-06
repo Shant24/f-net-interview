@@ -1,4 +1,38 @@
 .navbar {
+  &:not(.mobile) {
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &.mobile {
+    ul {
+      display: block;
+
+      li:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      a {
+        padding-bottom: 8px;
+        color: var(--color-gray);
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        text-transform: capitalize;
+        border-bottom: 1px solid var(--color-primary);
+
+        &::after {
+          display: none;
+        }
+
+        &.active {
+          color: var(--color-primary);
+        }
+      }
+    }
+  }
+
   ul,
   li {
     list-style: none;

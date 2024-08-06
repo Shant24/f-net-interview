@@ -1,7 +1,8 @@
 .header {
   padding: 10px 16px;
   height: 120px;
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,8 +10,38 @@
   background-color: var(--color-primary);
   color: var(--color-white);
   text-align: center;
+  z-index: 1;
+
+  @media (max-width: 1024px) {
+    height: 80px;
+    justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    height: 60px;
+  }
 }
 
 .logo {
   user-select: none;
+
+  .logoMobile {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    .logoDesktopTablet {
+      width: 74px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .logoDesktopTablet {
+      display: none;
+    }
+
+    .logoMobile {
+      display: block;
+    }
+  }
 }

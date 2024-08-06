@@ -10,6 +10,19 @@
   background: var(--color-white);
   border-radius: 10px;
 
+  &:not(.mobile) {
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &.mobile {
+    position: static;
+    background: none;
+    padding: 2px 4px;
+    flex-direction: row-reverse;
+  }
+
   &.error {
     color: var(--color-danger);
   }

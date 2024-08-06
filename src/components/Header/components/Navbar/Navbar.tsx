@@ -6,11 +6,20 @@ import { PagesEnum } from "@/types/enums";
 import { lazyRoutes } from "@/routes";
 import styles from "./styles.module.scss";
 
-const Navbar = () => {
+interface Props {
+  isMobile?: boolean;
+}
+
+const Navbar = ({ isMobile }: Props) => {
   const { isAuthorized } = useAuth();
   const { t } = useTranslation("common");
 
   const menuItems = [
+    {
+      label: t("navbar.homepage"),
+      link: PagesEnum.HOME,
+      preload: lazyRoutes.HomePage.preload,
+    },
     {
       label: t("navbar.teachers"),
       link: PagesEnum.TEACHERS,
@@ -39,9 +48,9 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={clsx(styles.navbar, isMobile && styles.mobile)}>
       <ul>
-        {menuItems.map(({ label, link, preload }) => (
+        {(isMobile ? menuItems : menuItems.slice(1, -1)).map(({ label, link, preload }) => (
           <li key={link}>
             <NavLink
               to={link}
@@ -50,7 +59,7 @@ const Navbar = () => {
               onClick={(e) => !isAuthorized && e.preventDefault()}
               aria-disabled={!isAuthorized}
             >
-              {label}
+              {isMobile ? label.toLowerCase() : label}
             </NavLink>
           </li>
         ))}

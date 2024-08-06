@@ -3,17 +3,25 @@ import SuccessMessageIcon from "@/components/icons/SuccessMessageIcon";
 import ErrorMessageIcon from "@/components/icons/ErrorMessageIcon";
 import CloseIcon from "@/components/icons/CloseIcon";
 import Button from "@/components/Button";
+import Steps from "@/components/Steps";
 import styles from "./styles.module.scss";
 
 interface IAuthFormCardProps extends React.FormHTMLAttributes<HTMLFormElement> {
+  onlyOneFooterButton?: boolean;
   onCloseWithButton?: () => void;
 }
 
-const AuthFormCard = ({ children, onCloseWithButton, ...formProps }: React.PropsWithChildren<IAuthFormCardProps>) => {
+const AuthFormCard = (props: React.PropsWithChildren<IAuthFormCardProps>) => {
+  const { children, onlyOneFooterButton, onCloseWithButton, ...formProps } = props;
   return (
     <form
       {...formProps}
-      className={clsx(styles.card, !!onCloseWithButton && styles.cardWithCloseButton, formProps.className)}
+      className={clsx(
+        styles.card,
+        onlyOneFooterButton && styles.onlyOneFooterButton,
+        !!onCloseWithButton && styles.cardWithCloseButton,
+        formProps.className,
+      )}
     >
       {onCloseWithButton && (
         <Button variant="icon" className={styles.closeButton} onClick={onCloseWithButton}>
@@ -39,10 +47,18 @@ AuthFormCard.Header = ({ title, subtitle, ...restProps }: AuthFormCardHeaderProp
   );
 };
 
-AuthFormCard.Body = ({ children, ...restProps }: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => {
+interface AuthFormCardBodyProps extends React.HTMLAttributes<HTMLDivElement> {
+  step?: number;
+  totalSteps?: number;
+}
+
+AuthFormCard.Body = ({ children, step, totalSteps, ...restProps }: React.PropsWithChildren<AuthFormCardBodyProps>) => {
   return (
-    <div {...restProps} className={clsx(styles.cardBody, restProps.className)}>
-      {children}
+    <div>
+      <div {...restProps} className={clsx(styles.cardBody, restProps.className)}>
+        {children}
+      </div>
+      <Steps step={step} totalSteps={totalSteps} isMobile />
     </div>
   );
 };

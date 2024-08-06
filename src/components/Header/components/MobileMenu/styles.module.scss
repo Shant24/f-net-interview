@@ -1,0 +1,28 @@
+.mobileMenu {
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
+}
+
+.burgerMenuIcon {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+
+  @media (max-width: 600px) {
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.actionsButtons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

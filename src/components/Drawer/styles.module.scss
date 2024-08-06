@@ -1,0 +1,103 @@
+.drawer {
+  position: relative;
+  z-index: 9;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--color-dark-15);
+  backdrop-filter: blur(3px);
+  width: 100dvw;
+  overflow-y: auto;
+  z-index: 10;
+  opacity: 0;
+
+  &.open {
+    animation: fadeIn 0.3s ease-in-out;
+    opacity: 1;
+  }
+
+  &.closing {
+    animation: fadeOut 0.3s ease-in-out;
+  }
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.panel {
+  padding: 16px 16px;
+  width: 100%;
+  position: relative;
+  border-radius: 20px 20px 0 0;
+  background: var(--color-light);
+  box-shadow: 0 1px 24px 0 var(--color-gray-18);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  transform: translateY(100%);
+
+  &.open {
+    animation: slideIn 0.3s ease-in-out;
+    transform: translateY(0);
+  }
+
+  &.closing {
+    animation: slideOut 0.3s ease-in-out;
+  }
+}
+
+.slider {
+  margin: 0 auto 16px;
+  width: 32px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

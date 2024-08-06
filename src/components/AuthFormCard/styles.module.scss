@@ -15,6 +15,18 @@
   &.cardWithCloseButton {
     padding-top: 32px;
   }
+
+  @media (max-width: 600px) {
+    margin: 0;
+    padding-bottom: 57px;
+    max-width: unset;
+    box-shadow: unset;
+    border-radius: 0;
+
+    &.onlyOneFooterButton {
+      padding-bottom: 89px;
+    }
+  }
 }
 
 .closeButton {
@@ -32,18 +44,28 @@
     font-size: 32px;
     line-height: 36px;
     font-weight: 700;
+
+    @media (max-width: 600px) {
+      font-size: 20px;
+      line-height: 24px;
+    }
   }
 
   p {
     margin-top: 4px;
     font-size: 18px;
     line-height: 24px;
+
+    @media (max-width: 600px) {
+      margin-top: 8px;
+      font-size: 16px;
+    }
   }
 }
 
 .cardBody {
   height: auto;
-  padding: 16px 0;
+  padding: 16px 0 0;
 }
 
 .cardMessage {
@@ -68,7 +90,7 @@
 
 .cardFooter {
   margin-top: auto;
-  padding-top: 72px;
+  padding-top: 68px;
   display: flex;
   justify-content: space-between;
   align-items: center;

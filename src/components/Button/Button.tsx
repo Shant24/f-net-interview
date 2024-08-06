@@ -10,6 +10,7 @@ export type ButtonProps<C extends React.ElementType> = PolymorphicComponentPropW
     as?: C extends string ? "button" | "a" : C;
     isLoading?: boolean;
     fullWidth?: boolean;
+    mobileFullWidth?: boolean;
     disabled?: boolean;
     variant?: "primary" | "secondary" | "danger" | "icon";
     textSize?: "sm" | "lg";
@@ -30,6 +31,7 @@ const Button: ButtonComponent = forwardRef(
       isLoading = false,
       disabled = false,
       fullWidth = false,
+      mobileFullWidth = false,
       variant = "primary",
       textSize = "lg",
       ...restProps
@@ -45,6 +47,7 @@ const Button: ButtonComponent = forwardRef(
         className={clsx(
           styles.button,
           fullWidth && styles.fullWidth,
+          mobileFullWidth && styles.mobileFullWidth,
           variant && styles[variant],
           textSize && styles[textSize + "Font"],
           (isLoading || disabled) && styles.disabled,

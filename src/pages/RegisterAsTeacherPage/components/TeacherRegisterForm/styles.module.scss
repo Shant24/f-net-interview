@@ -10,3 +10,10 @@
   line-height: 24px;
   text-decoration: underline;
 }
+
+.footer {
+  @media (max-width: 600px) {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+}

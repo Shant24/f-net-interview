@@ -1,6 +1,6 @@
 import { useState } from "react";
+import Steps from "@/components/Steps";
 import styles from "./styles.module.scss";
-import clsx from "clsx";
 
 export interface IStepComponentState {
   from: "teacher" | "donor" | "recovery-password";
@@ -48,11 +48,7 @@ const AuthFormSteps = ({ renderComponents }: Props) => {
         ) : null;
       })}
 
-      <div className={styles.stepIconsContainer}>
-        {Array.from({ length: totalSteps }, (_, index) => (
-          <div key={index} className={clsx(styles.stepIcon, step >= index && styles.active)} />
-        ))}
-      </div>
+      <Steps step={step} totalSteps={totalSteps} />
     </div>
   );
 };

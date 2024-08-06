@@ -23,6 +23,12 @@
   width: 100%;
 }
 
+.mobileFullWidth {
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
 .icon {
   padding: unset;
   height: unset;
